@@ -35,7 +35,7 @@ function GroupTaskCard({groupDesc,index,id,groupLength,groupData,getAllTodos,col
 
 
   return (
-    <div className='groupTaskCard' style={{border: `2px solid ${color?.main}`,background:`${color?.second}10`}}>
+    <div className='groupTaskCard' style={{border: `1px solid ${color?.main}`,background:`${color?.second}10`}}>
       <span className='groupTitle' style={{color: color?.main,border: `1px solid ${color?.second}`}} >{groupData[index].title}</span>
       <p>{groupDesc}</p>
       {tasks.length > 0 ? tasks.map((task,i)=>{
