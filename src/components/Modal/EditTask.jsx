@@ -4,7 +4,7 @@ import { DialogContent } from '@mui/material';
 import Dialog from '@mui/material/Dialog';
 import closeIcon from "../../assets/closeIcon.svg";
 import "../../styles/modalAdditional.scss"
-import InputBox from '../reuseableComp/inputBox';
+import InputBox from '../reuseableComp/InputBox';
 import ButtonBox from '../reuseableComp/ButtonBox';
 import { patchRequest } from '../../function/getPost';
 
