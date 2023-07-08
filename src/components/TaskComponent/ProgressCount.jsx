@@ -1,5 +1,5 @@
 import React from 'react'
-import checkmark from "../../assets/checkmark.svg"
+import checkmark from "../../assets/checkMark.svg"
 
 function ProgressCount({percent}) {
   return (
