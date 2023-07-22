@@ -5,7 +5,9 @@ import GroupTaskCard from './components/GroupTaskCard'
 import plusIcon from "./assets/plusIcon.svg"
 import CreateNewGroup from './components/Modal/CreateNewGroup'
 import ButtonBox from './components/reuseableComp/ButtonBox'
-import {CardColor} from "./components/AllColor"
+import {CardColor} from "./data/AllColor"
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 
 
 
@@ -39,10 +41,10 @@ function App() {
   },[])
 
   useEffect(()=>{
-    console.log("update")
   },[groupData])
 
   return (
+    <DndProvider backend={HTML5Backend}>
     <div>
       <div className='header'>
         <h1>Product Roadmap</h1>
@@ -58,6 +60,7 @@ function App() {
       
       <CreateNewGroup showCreate={showCreate} setShowCreate={setShowCreate} groupData={groupData} setGroupData={setGroupData} />
     </div>
+    </DndProvider>
   )
 }
 

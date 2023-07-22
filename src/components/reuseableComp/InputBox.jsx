@@ -1,15 +1,13 @@
-import React, { useState } from 'react'
+import React from 'react'
 import "../../styles/reuseableComp.scss"
 
 function InputBox({title,placeholder,styles,textarea,setInput,type}) {
-
 
   const handleChange = event =>{
     setInput(event.target.value)
   }
 
   const customStyle = styles
-  console.log(type)
   
   return (
     <div>

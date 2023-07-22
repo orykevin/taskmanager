@@ -7,7 +7,18 @@ import { ClickAwayListener } from '@mui/material'
 import { deleteRequest, postRequest } from '../../function/getPost'
 
 
-function DialogMenu({setShowModal,setShowModal2,handleClose,setShowDialog,indexGroup,groupLength,groupData,taskData,getAllTodos,getAllTask}) {
+function DialogMenu({
+  setShowModal,
+  setShowModal2,
+  handleClose,
+  setShowDialog,
+  indexGroup,
+  groupLength,
+  groupData,
+  taskData,
+  getAllTodos,
+  getAllTask
+}){
 
   const auth_token = import.meta.env.VITE_TOKEN
   const apiURLDel = `${import.meta.env.VITE_API_URL}todos/${taskData.todo_id}/items/${taskData.id}`
@@ -17,18 +28,14 @@ function DialogMenu({setShowModal,setShowModal2,handleClose,setShowDialog,indexG
       "name": title,
       "progress_percentage": parseInt(percent)
     }
-    //const newTaskData = [...tasks,createTaskData]
-    postRequest(apiURL,createTaskData,auth_token).then((res)=>{
+    postRequest(apiURL,createTaskData,auth_token).then(()=>{
       getAllTodos()
       getAllTask()
     })
     
   }
   const deleteTask = (apiURL) => {
-    //const newTask = [...tasks]
-    //newTask.splice(i,1)
-    //setTasks(newTask)
-    deleteRequest(apiURLDel,auth_token).then((res)=>{
+    deleteRequest(apiURLDel,auth_token).then(()=>{
         addNewTask(taskData.name,taskData.progress_percentage,apiURL)
         handleClose()
     })
@@ -38,16 +45,15 @@ function DialogMenu({setShowModal,setShowModal2,handleClose,setShowDialog,indexG
         setShowDialog(false)
     }
 
-    const handleMove = (move) =>{
-        if(move == "right"){
-            const apiURLAdd = `${import.meta.env.VITE_API_URL}todos/${groupData[indexGroup+1].id}/items`
-            deleteTask(apiURLAdd)
-        }else{
-            const apiURLAdd = `${import.meta.env.VITE_API_URL}todos/${groupData[indexGroup-1].id}/items`
-            deleteTask(apiURLAdd)
-        }
-    }
-
+  const handleMove = (move) =>{
+      if(move == "right"){
+          const apiURLAdd = `${import.meta.env.VITE_API_URL}todos/${groupData[indexGroup+1].id}/items`
+          deleteTask(apiURLAdd)
+      }else{
+          const apiURLAdd = `${import.meta.env.VITE_API_URL}todos/${groupData[indexGroup-1].id}/items`
+          deleteTask(apiURLAdd)
+      }
+  }
 
   return (
     <ClickAwayListener onClickAway={handleClickAway}>

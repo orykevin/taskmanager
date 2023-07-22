@@ -1,9 +1,14 @@
 import React from 'react'
 import "../../styles/reuseableComp.scss"
 
-function ButtonBox({text,bgColor,funcClick,paddings,fontSize}) {
-
-
+function ButtonBox({
+  text,
+  bgColor,
+  funcClick,
+  paddings,
+  fontSize
+  }){
+    
   return (
     <div className='buttonBox' 
     style={{background:bgColor ? bgColor : "",
@@ -14,8 +19,7 @@ function ButtonBox({text,bgColor,funcClick,paddings,fontSize}) {
     }}
     onClick={()=>{
         funcClick()
-    }}
-    >
+    }}>
         {text ? text : ""}
     </div>
   )

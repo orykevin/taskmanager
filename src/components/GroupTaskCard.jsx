@@ -4,8 +4,12 @@ import "../styles/taskCard.scss"
 import plusIcon from "../assets/plusRoundIcon.svg"
 import CreateNewTask from './Modal/CreateNewTask'
 import { getRequest } from '../function/getPost'
+import TaskList from './TaskComponent/TaskList'
+
 
 function GroupTaskCard({groupDesc,index,id,groupLength,groupData,getAllTodos,color}) {
+
+
 
   const [showCreate,setShowCreate] = useState(false)
   const [tasks,setTasks] = useState([])
@@ -32,19 +36,11 @@ function GroupTaskCard({groupDesc,index,id,groupLength,groupData,getAllTodos,col
   },[groupData[index]])
 
 
-
-
   return (
     <div className='groupTaskCard' style={{border: `1px solid ${color?.main}`,background:`${color?.second}10`}}>
       <span className='groupTitle' style={{color: color?.main,border: `1px solid ${color?.second}`}} >{groupData[index].title}</span>
       <p>{groupDesc}</p>
-      {tasks.length > 0 ? tasks.map((task,i)=>{
-        return <TaskCard data={task} setTasks={setTasks} tasks={tasks} i={i} indexGroup={index} groupLength={groupLength} groupData={groupData} getAllTodos={getAllTodos} getAllTask={getAllTask} key={task.id}/> 
-      }) :
-      <div className='emptyTaskContainer'>
-        <h4>No Task</h4>
-      </div>
-      }
+      <TaskList tasks={tasks} setTasks={setTasks} index={index} groupLength={groupLength} groupData={groupData} getAllTodos={getAllTodos} getAllTask={getAllTask} />
       <div className='newTaskContainer' onClick={()=>setShowCreate(true)}>
         <img src={plusIcon} />
         <p>New Task</p>

@@ -9,7 +9,7 @@ import ButtonBox from '../reuseableComp/ButtonBox';
 import { patchRequest } from '../../function/getPost';
 
 
-function EditTask({showModal,setShowModal,taskData,setTaskData}) {
+function EditTask({showModal,setShowModal,taskData,tasks,setTasks,i}) {
 
   const [inputName,setInputName] = useState("")
   const [inputPercent,setInputPercent] = useState(0)
@@ -18,14 +18,14 @@ function EditTask({showModal,setShowModal,taskData,setTaskData}) {
   const apiURL = `${import.meta.env.VITE_API_URL}todos/${taskData.todo_id}/items/${taskData.id}`
 
   const updateTask = () =>{
-    let prevData = taskData
+    let prevData = tasks
     if(inputName !== ""){
-      prevData.name = inputName
+      prevData[i].name = inputName
       const dataAPI = {
-        "target_todo_id" : prevData.todo_id,
-        "name" : prevData.name
+        "target_todo_id" : prevData[i].todo_id,
+        "name" : prevData[i].name
       }
-      setTaskData(prevData)
+      setTasks(prevData)
       patchRequest(apiURL,dataAPI,auth_token)
       setShowModal(false)
     }
@@ -51,7 +51,7 @@ function EditTask({showModal,setShowModal,taskData,setTaskData}) {
         </DialogTitle>
         <DialogContent>
           <InputBox title="Task Name" placeholder="Type your Task" setInput={setInputName} />
-          <InputBox title="Progress" placeholder="70%" styles={{width:"30%"}} setInput={setInputPercent} />
+          <InputBox title="Progress" placeholder={taskData.progress_percentage} styles={{width:"30%"}} setInput={setInputPercent} />
           <div className='buttonContainer'>
           <ButtonBox text="Cancel" funcClick={()=>setShowModal(!showModal)} />
           <ButtonBox text="Save Task" bgColor="#01959F" funcClick={()=>updateTask()} />
